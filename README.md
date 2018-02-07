@@ -1,1 +1,1 @@
-# sleepyzzz-api
+# SleepyZzz API

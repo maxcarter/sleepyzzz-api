@@ -1,0 +1,27 @@
+{
+  "name": "sleepyzzz-api",
+  "version": "1.0.0",
+  "description": "An API for SleepyZzz",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxcarter/sleepyzzz-api.git"
+  },
+  "author": "Maxwell Carter (https://github.com/maxcarter)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maxcarter/sleepyzzz-api/issues"
+  },
+  "homepage": "https://github.com/maxcarter/sleepyzzz-api#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "firebase": "^4.9.1",
+    "morgan": "^1.9.0",
+    "path": "^0.12.7",
+    "winston": "^2.4.0"
+  }
+}
