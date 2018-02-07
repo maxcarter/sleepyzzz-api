@@ -1,6 +1,10 @@
 module.exports = {
     mode: 'dev', // [dev/prod]
     log: 'sleepyzzz-api.log',
+    token: {
+      life: '24h',
+      secret: ''
+    },
     dev: {
         port: 8080,
         host: 'localhost',

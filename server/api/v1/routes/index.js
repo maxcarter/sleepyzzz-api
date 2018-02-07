@@ -4,6 +4,10 @@
  * @param  {object} router ExpressJS Enpoint Router
  */
 module.exports = (router) => {
+
+    require('./token')(router)
+    // require('./data')(router)
+
     // Error middleware must remain at end
-    require('./error')(router);
-};
+    require('./error')(router)
+}
