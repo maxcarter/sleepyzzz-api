@@ -25,7 +25,7 @@ module.exports = {
      * @param  {Function} next Callback function to move on to the next middleware
      */
     params: (req, res, next) => {
-      log.info(req.params)
+        log.info(req.params)
         if (!req.params || (Object.keys(req.params).length === 0 && req.params.constructor === Object)) {
             let err = new Error('Empty or invalid parameters in path!')
             err.status = 400
@@ -41,7 +41,7 @@ module.exports = {
      * @param  {Function} next Callback function to move on to the next middleware
      */
     query: (req, res, next) => {
-      log.info(req.query)
+        log.info(req.query)
         if (!req.query || (Object.keys(req.query).length === 0 && req.query.constructor === Object)) {
             let err = new Error('Empty or invalid query parameters in path!')
             err.status = 400
@@ -62,7 +62,7 @@ module.exports = {
 
         if (!token) {
             log.error('Missing JWT')
-            let err = new Error('Missing authentication token, forbidden')
+            let err = new Error('Forbidden: Missing authentication token')
             err.status = 403
             next(err)
             return
@@ -70,10 +70,10 @@ module.exports = {
 
 
         // verifies secret and checks if token is valid
-        jwt.verify(token, config.tokenSecret, function(err, decoded) {
+        jwt.verify(token, config.token.secret, function(err, decoded) {
             if (err) {
                 log.error('JWT check failed!')
-                let err = new Error('Invalid Token for authentication, forbidden')
+                let err = new Error('Forbidden: Invalid Token for authentication')
                 err.status = 403
                 next(err)
                 return

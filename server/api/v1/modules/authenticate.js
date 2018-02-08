@@ -6,19 +6,19 @@ var config = require('../../../config')
 module.exports = {
     giveToken: (req, res, next) => {
         if (!req.query.device) {
-            log.info('Bad Request: Missing required parameter [device].');
-            let err = new Error('Bad Request: Missing required parameter [device].');
-            err.status = 400;
-            next(err);
-            return;
+            log.info('Bad Request: Missing required parameter [device].')
+            let err = new Error('Bad Request: Missing required parameter [device].')
+            err.status = 400
+            next(err)
+            return
         }
         ctrls.database.read('devices', req.query.device).then((result) => {
             if (!result) {
-                log.info('Authentication failed: Device not found.');
-                let err = new Error('Authentication failed: Device not found.');
-                err.status = 404;
-                next(err);
-                return;
+                log.info('Authentication failed: Device not found.')
+                let err = new Error('Authentication failed: Device not found.')
+                err.status = 404
+                next(err)
+                return
             }
             let token
             try {
@@ -42,11 +42,11 @@ module.exports = {
             }
             next()
         }).catch((error) => {
-            log.error('Internal Server Error: Failed querying database!');
+            log.error('Internal Server Error: Failed querying database!')
             let err = new Error('Internal Server Error: Failed querying database!')
             err.status = 500
             next(err)
             return
-        });
+        })
     }
 }
