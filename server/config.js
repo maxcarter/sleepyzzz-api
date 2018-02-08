@@ -5,6 +5,9 @@ module.exports = {
       life: '24h',
       secret: ''
     },
+    sampling: {
+      interval: 100
+    },
     dev: {
         port: 8080,
         host: 'localhost',

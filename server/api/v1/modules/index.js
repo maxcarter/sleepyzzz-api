@@ -14,5 +14,5 @@ module.exports = {
     response: require('./response'),
     verify: require('./verify'),
     authenticate: require('./authenticate'),
-    // data: require('./data')
+    data: require('./data')
 }
