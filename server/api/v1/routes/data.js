@@ -8,6 +8,7 @@ var modules = require('../modules')
 module.exports = (router) => {
     log.info('Initializing Route POST /data')
     router.post('/data',
+        modules.authenticate.basicAuth,
         modules.verify.token,
         modules.verify.body,
         modules.data.save,

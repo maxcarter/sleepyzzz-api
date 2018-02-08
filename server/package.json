@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/maxcarter/sleepyzzz-api#readme",
   "dependencies": {
+    "basic-auth": "^2.0.0",
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "firebase": "^4.9.1",
