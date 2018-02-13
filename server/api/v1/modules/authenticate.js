@@ -48,8 +48,8 @@ module.exports = {
             let token
             try {
                 token = jwt.sign({
-                    'device': req.query.device,
-                    'baby': result.baby
+                    d: req.query.device,
+                    b: result.baby
                 }, config.token.secret, {
                     expiresIn: config.token.life
                 })

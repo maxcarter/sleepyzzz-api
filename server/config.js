@@ -3,10 +3,10 @@ module.exports = {
     log: 'sleepyzzz-api.log',
     token: {
         life: '24h',
-        secret: '596F48E9-298A-47BE-9E2B-CB346622A15F'
+        secret: ''
     },
     sampling: {
-        interval: 100
+        interval: 1000
     },
     dev: {
         port: 8080,

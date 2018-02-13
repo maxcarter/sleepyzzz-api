@@ -11,7 +11,7 @@ module.exports = {
      */
     body: (req, res, next) => {
         if (!req.body || (Object.keys(req.body).length === 0 && req.body.constructor === Object)) {
-            let err = new Error('Empty or invalid payload!')
+            let err = new Error('Bad Request: Empty or invalid payload!')
             err.status = 400
             next(err)
             return
@@ -26,7 +26,7 @@ module.exports = {
      */
     params: (req, res, next) => {
         if (!req.params || (Object.keys(req.params).length === 0 && req.params.constructor === Object)) {
-            let err = new Error('Empty or invalid parameters in path!')
+            let err = new Error('Bad Request: Empty or invalid parameters in path!')
             err.status = 400
             next(err)
             return
@@ -41,7 +41,7 @@ module.exports = {
      */
     query: (req, res, next) => {
         if (!req.query || (Object.keys(req.query).length === 0 && req.query.constructor === Object)) {
-            let err = new Error('Empty or invalid query parameters in path!')
+            let err = new Error('Bad Request: Empty or invalid query parameters in path!')
             err.status = 400
             next(err)
             return
@@ -66,7 +66,6 @@ module.exports = {
             return
         }
 
-
         // verifies secret and checks if token is valid
         jwt.verify(token, config.token.secret, function(err, decoded) {
             if (err) {
@@ -77,7 +76,18 @@ module.exports = {
                 return
             }
 
-            req.auth = decoded
+            if (!('b' in decoded) || !('d' in decoded)) {
+                log.error('Invalid Token')
+                let err = new Error('Forbidden: Invalid Token for authentication')
+                err.status = 403
+                next(err)
+                return
+            }
+
+            req.auth = {
+                baby: decoded.b,
+                device: decoded.d
+            }
             next()
         })
     }
