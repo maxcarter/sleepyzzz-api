@@ -1,5 +1,4 @@
 const express = require('express')
-const bodyParser = require('body-parser')
 const path = require('path')
 const morgan = require('morgan')
 const log = require('winston')
@@ -26,10 +25,6 @@ firebase.initializeApp({
     databaseURL: server.database.url
 })
 
-app.use(bodyParser.urlencoded({
-    extended: true
-}))
-app.use(bodyParser.json())
 app.use(morgan(mode))
 
 require('./api')(app);
