@@ -39,6 +39,7 @@ module.exports = {
                         x: req.body.movement[i].x,
                         y: req.body.movement[i].y,
                         z: req.body.movement[i].z,
+                        fall: req.body.movement[i].fall,
                         timestamp: timestamp + config.sampling.interval * (i - req.body.heartrate.length - 1)
                     }
                     ctrls.database.insert(collection, obj)
