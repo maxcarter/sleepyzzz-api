@@ -15,6 +15,14 @@ module.exports = {
 
         let timestamp = Date.now()
 
+        if (timestamp - req.auth.iat * 1000 < config.token.setupTime) {
+            res.locals = {
+                accepted: false
+            }
+            next()
+            return
+        }
+
         if (req.body.heartrate && req.body.heartrate.length > 0) {
             let collection = 'heartrate/' + req.auth.baby
             for (let i = 0; i < req.body.heartrate.length; i++) {

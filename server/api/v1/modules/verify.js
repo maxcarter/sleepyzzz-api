@@ -86,7 +86,8 @@ module.exports = {
 
             req.auth = {
                 baby: decoded.b,
-                device: decoded.d
+                device: decoded.d,
+                iat: decoded.iat
             }
             next()
         })
