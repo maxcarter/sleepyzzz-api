@@ -25,17 +25,20 @@ module.exports = {
 
         if (req.body.heartrate && req.body.heartrate.length > 0) {
             let collection = 'heartrate/' + req.auth.baby
+            let avg = 0
             for (let i = 0; i < req.body.heartrate.length; i++) {
-                try {
-                    let obj = {
-                        bpm: req.body.heartrate[i],
-                        timestamp: timestamp + config.sampling.interval * (i - req.body.heartrate.length - 1)
-                    }
-                    ctrls.database.insert(collection, obj)
-                } catch (error) {
-                    log.error('Error occured while attempting to insert data for [heartrate]: ' + req.body.heartrate[i])
-                    log.error(error)
+                avg += req.body.heartrate[i]
+            }
+            avg = avg / req.body.heartrate.length
+            try {
+                let obj = {
+                    bpm: avg,
+                    timestamp: timestamp //+ config.sampling.interval * (i - req.body.heartrate.length - 1)
                 }
+                ctrls.database.insert(collection, obj)
+            } catch (error) {
+                log.error('Error occured while attempting to insert data for [heartrate]: ' + avg)
+                log.error(error)
             }
         }
 
@@ -60,17 +63,20 @@ module.exports = {
 
         if (req.body.temperature && req.body.temperature.length > 0) {
             let collection = 'temperature/' + req.auth.baby
+            let avg = 0
             for (let i = 0; i < req.body.temperature.length; i++) {
-                try {
-                    let obj = {
-                        temperature: req.body.temperature[i],
-                        timestamp: timestamp + config.sampling.interval * (i - req.body.heartrate.length - 1)
-                    }
-                    ctrls.database.insert(collection, obj)
-                } catch (error) {
-                    log.error('Error occured while attempting to insert data for [temperature]: ' + req.body.temperature[i])
-                    log.error(error)
+                avg += req.body.temperature[i]
+            }
+            avg = avg / req.body.temperature.length
+            try {
+                let obj = {
+                    temperature: avg,
+                    timestamp: timestamp //+ config.sampling.interval * (i - req.body.heartrate.length - 1)
                 }
+                ctrls.database.insert(collection, obj)
+            } catch (error) {
+                log.error('Error occured while attempting to insert data for [temperature]: ' + avg)
+                log.error(error)
             }
         }
         res.locals = {
